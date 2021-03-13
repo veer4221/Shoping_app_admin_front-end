@@ -2,8 +2,12 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import axiosIntance from "../helpers/axios";
 import { authConstant } from "./constants";
-const { LOGIN_REQUEST, LOGIN_FAILURE, LOGIN_SUCCESS } = authConstant;
-
+const {
+  LOGIN_REQUEST,
+  LOGIN_FAILURE,
+  LOGIN_SUCCESS,
+  LOGOUT_REQUEST,
+} = authConstant;
 export const login = (user) => {
   console.log(user);
   return async (dispach) => {
@@ -51,5 +55,14 @@ export const isUserLoggedIn = () => {
         payload: "fail to login",
       });
     }
+  };
+};
+
+export const signout = () => {
+  return async (dispatch) => {
+    localStorage.clear();
+    dispatch({
+      type: LOGOUT_REQUEST,
+    });
   };
 };

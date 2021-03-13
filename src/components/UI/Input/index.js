@@ -5,7 +5,7 @@ function Input(props) {
   const { label, type, placeholder, errorMessage, value, onChange } = props;
   return (
     <div>
-      <Form.Group controlId="formBasicEmail">
+      <Form.Group>
         <Form.Label>{label}</Form.Label>
         <Form.Control
           type={type}

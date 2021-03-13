@@ -1,5 +1,5 @@
 import { authConstant } from "../actions/constants";
-const { LOGIN_REQUEST, LOGIN_SUCCESS } = authConstant;
+const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_REQUEST } = authConstant;
 
 const initStage = {
   token: null,
@@ -28,6 +28,11 @@ export default (state = initStage, action) => {
         token: action.payload.token,
         authenticate: true,
         authenticating: false,
+      };
+      break;
+    case LOGOUT_REQUEST:
+      state = {
+        ...initStage,
       };
       break;
   }
