@@ -1,5 +1,11 @@
 import { authConstant } from "../actions/constants";
-const { LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_REQUEST } = authConstant;
+const {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGOUT_REQUEST,
+  LOGOUT_FAILURE,
+  LOGOUT_SUCCESS,
+} = authConstant;
 
 const initStage = {
   token: null,
@@ -11,6 +17,9 @@ const initStage = {
   },
   authenticate: false,
   authenticating: false,
+  loading: false,
+  error: null,
+  message: "",
 };
 export default (state = initStage, action) => {
   console.log(action);
@@ -33,6 +42,19 @@ export default (state = initStage, action) => {
     case LOGOUT_REQUEST:
       state = {
         ...initStage,
+        loading: true,
+      };
+      break;
+    case LOGOUT_SUCCESS:
+      state = {
+        ...initStage,
+      };
+      break;
+    case LOGOUT_FAILURE:
+      state = {
+        ...initStage,
+        error: action.payload.error,
+        loading: false,
       };
       break;
   }

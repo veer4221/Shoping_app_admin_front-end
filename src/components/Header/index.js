@@ -7,8 +7,9 @@ import { signout } from "../../actions";
 function Header(props) {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
   const logout = () => {
-    dispatch(signout(signout));
+    dispatch(signout());
   };
   const renderLoggedInLink = () => {
     return (

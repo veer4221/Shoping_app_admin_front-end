@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../actions";
 
 function Signup(props) {
+  let [color, setColor] = useState("blue");
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -29,7 +30,7 @@ function Signup(props) {
     return <Redirect to={`/`} />;
   }
   if (user.loading) {
-    return <p>Loading...!</p>;
+    return <h1>Loding......!</h1>;
   }
   return (
     <div>

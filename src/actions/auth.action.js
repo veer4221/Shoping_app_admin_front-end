@@ -7,6 +7,8 @@ const {
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
   LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE,
 } = authConstant;
 export const login = (user) => {
   console.log(user);
@@ -60,9 +62,17 @@ export const isUserLoggedIn = () => {
 
 export const signout = () => {
   return async (dispatch) => {
-    localStorage.clear();
-    dispatch({
-      type: LOGOUT_REQUEST,
-    });
+    dispatch({ type: LOGOUT_REQUEST });
+    const res = await axiosIntance.post(`/admin/signout`);
+
+    if (res.status === 200) {
+      localStorage.clear();
+      dispatch({ type: LOGOUT_SUCCESS });
+    } else {
+      dispatch({
+        type: LOGOUT_FAILURE,
+        payload: { error: res.data.error },
+      });
+    }
   };
 };
